@@ -20,6 +20,7 @@ func NewController(service Service) Controller {
 }
 
 func (controller *controller) Register(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(User{
 		Id: "u000",
 		Username: "doe",

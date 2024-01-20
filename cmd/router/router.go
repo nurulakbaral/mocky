@@ -11,15 +11,23 @@ import (
 
 func New(conn *pgx.Conn) *chi.Mux {
 	router := chi.NewRouter()
-	router.Use(middleware.Logger)
-
 	userControllers := user.Init(conn)
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello Word"))
+
+	router.Use(middleware.Logger)
+	
+	router.Group(func(r chi.Router) {
+		r.Get("/", func(w http.ResponseWriter, r *http.Request) {
+			w.Write([]byte("Hello Word"))
+		})
 	})
-	router.Post("/api/v1/register", userControllers.Register)
-	router.Post("/api/v1/login", userControllers.Login)
-	router.Get("/api/v1/logout", userControllers.Logout)
+
+	router.Route("/api/v1", func(routes chi.Router) {
+		routes.Group(func(r chi.Router) {
+			r.Post("/register", userControllers.Register)
+			r.Post("/login", userControllers.Login)
+			r.Get("/logout", userControllers.Logout)
+		})
+	})
 
 	return router
 }
