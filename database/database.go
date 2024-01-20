@@ -14,5 +14,7 @@ func NewConnect() *pgx.Conn  {
 	if err != nil {
 		log.Println("Unable to connect to database: \n", err)
 	}
+	log.Println("⚙️  Connected to The Database.")
+	
 	return conn
 }

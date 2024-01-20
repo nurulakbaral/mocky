@@ -2,13 +2,18 @@ package main
 
 import (
 	"context"
+	"dododo/cmd/router"
 	"dododo/database"
-	"fmt"
+	"log"
+	"net/http"
 )
 
 func main() {
 	conn := database.NewConnect()
 	defer conn.Close(context.Background())
 
-	fmt.Println("Hello World.")
+	router := router.New(conn)
+	log.Println("📨 Server Running on Port 3001")
+
+	http.ListenAndServe(":3001", router)
 }
