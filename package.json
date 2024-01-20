@@ -1,0 +1,8 @@
+{
+  "name": "dododo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

@@ -13,7 +13,7 @@ func main() {
 	defer conn.Close(context.Background())
 
 	router := router.New(conn)
-	log.Println("📨 Server Running on Port 3001")
+	log.Println("📨 Server Running on Port 3001.")
 
 	http.ListenAndServe(":3001", router)
 }
