@@ -1,4 +1,4 @@
-package db
+package database
 
 import (
 	"context"
@@ -9,10 +9,10 @@ import (
 )
 
 
-func New() *pgx.Conn  {
-	db, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+func NewConnect() *pgx.Conn  {
+	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Println("Unable to connect to database: \n", err)
 	}
-	return db
+	return conn
 }

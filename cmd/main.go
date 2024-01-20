@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"dododo/db"
+	"dododo/database"
 	"fmt"
 )
 
 func main() {
-	db := db.New()
-	defer db.Close(context.Background())
+	conn := database.NewConnect()
+	defer conn.Close(context.Background())
 
 	fmt.Println("Hello World.")
 }
