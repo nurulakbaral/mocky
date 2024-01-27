@@ -1,10 +1,10 @@
 package main
 
 import (
-	"dododo/cmd/router"
-	"dododo/config"
-	"dododo/database"
 	"log"
+	"mocky-blog/cmd/router"
+	"mocky-blog/config"
+	"mocky-blog/database"
 	"net/http"
 )
 

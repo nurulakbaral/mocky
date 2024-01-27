@@ -1,7 +1,7 @@
 package router
 
 import (
-	"dododo/domain/user"
+	"mocky-blog/domain/user"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"

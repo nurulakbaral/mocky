@@ -2,7 +2,7 @@ package user
 
 import (
 	"context"
-	"dododo/logger"
+	"mocky-blog/logger"
 
 	"gorm.io/gorm"
 )

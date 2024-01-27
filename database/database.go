@@ -1,9 +1,9 @@
 package database
 
 import (
-	"dododo/config"
-	"dododo/domain/user"
 	"log"
+	"mocky-blog/config"
+	"mocky-blog/domain/user"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
