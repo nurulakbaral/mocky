@@ -19,7 +19,8 @@ func NewService(repository Repository) Service {
 }
 
 func (service *service) Register(ctx context.Context, user User) (User, error) {
-	return User{}, nil
+	userValue, err := service.repository.Insert(ctx, user)
+	return userValue, err
 }
 
 func (service *service) Login(ctx context.Context, user User) (User, error) {

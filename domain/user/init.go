@@ -1,9 +1,11 @@
 package user
 
-import "github.com/jackc/pgx/v5"
+import (
+	"gorm.io/gorm"
+)
 
-func Init(conn *pgx.Conn) Controller {
-	repository := NewRepository(conn)
+func Init(db *gorm.DB) Controller {
+	repository := NewRepository(db)
 	service := NewService(repository)
 	controller := NewController(service)
 	return controller

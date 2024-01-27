@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"dododo/cmd/router"
 	"dododo/config"
 	"dododo/database"
@@ -10,11 +9,10 @@ import (
 )
 
 func main() {
-	conn := database.NewConnect()
-	defer conn.Close(context.Background())
-
-	router := router.New(conn)
-	log.Println("📨 Server Running on Port " + config.Port + " .")
+	db := database.New()
+	router := router.New(db)
+	
+	log.Println("📨 Server Running on Port " + config.PORT + " .")
 
 	http.ListenAndServe(":3001", router)
 }

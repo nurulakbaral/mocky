@@ -1,5 +1,9 @@
 package config
 
-const (
-	Port = "3001"
+import "os"
+
+
+var (
+	DATABASE_URL = os.Getenv("DATABASE_URL")
+	PORT = "3001"
 )

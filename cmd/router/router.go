@@ -6,12 +6,12 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/jackc/pgx/v5"
+	"gorm.io/gorm"
 )
 
-func New(conn *pgx.Conn) *chi.Mux {
+func New(db *gorm.DB) *chi.Mux {
 	router := chi.NewRouter()
-	userControllers := user.Init(conn)
+	userControllers := user.Init(db)
 
 	router.Use(middleware.Logger)
 	

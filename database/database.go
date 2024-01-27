@@ -1,20 +1,36 @@
 package database
 
 import (
-	"context"
+	"dododo/config"
+	"dododo/domain/user"
 	"log"
-	"os"
 
-	"github.com/jackc/pgx/v5"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
+var db *gorm.DB
 
-func NewConnect() *pgx.Conn  {
-	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+func NewMigration() {
+	err := db.AutoMigrate(&user.User{})
+	if err != nil {
+		log.Println("Failed to migrate tables.")
+		panic(err)
+	}
+
+}
+
+func New() *gorm.DB  {
+	var err error
+	db, err = gorm.Open(postgres.Open(config.DATABASE_URL), &gorm.Config{})
+
 	if err != nil {
 		log.Println("Unable to connect to database: \n", err)
 	}
+
+	NewMigration()
+
 	log.Println("⚙️  Connected to The Database.")
 	
-	return conn
+	return db
 }
